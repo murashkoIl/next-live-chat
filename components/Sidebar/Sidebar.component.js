@@ -13,6 +13,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from "@material-ui/icons/Search";
 import { IconButton } from "@material-ui/core";
 import Chat from "../Chat";
+import SwapLanguages from "../SwapLanguages";
 import * as EmailValidator from "email-validator";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -33,7 +34,6 @@ const Sidebar = () => {
       !chatAreadyExists(input) &&
       input !== user.email
     ) {
-      console.log("success");
       db.collection("chats").add({
         users: [user.email, input],
       });
@@ -71,6 +71,8 @@ const Sidebar = () => {
       {chatsSnapshot?.docs.map((chat) => (
         <Chat key={chat.id} id={chat.id} users={chat.data().users} />
       ))}
+
+      <SwapLanguages />
     </Container>
   );
 };

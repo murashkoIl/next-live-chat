@@ -1,12 +1,13 @@
+import { appWithTranslation } from "next-i18next";
 import "@/styles/globals.css";
-import Login from "./login";
+import Login from "./_login";
 import Loading from "@/components/Loading";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { useEffect } from "react";
 import firebase from "firebase/compat/app";
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
@@ -28,4 +29,6 @@ export default function App({ Component, pageProps }) {
   if (!user) return <Login />;
 
   return <Component {...pageProps} />;
-}
+};
+
+export default appWithTranslation(App);

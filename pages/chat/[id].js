@@ -5,6 +5,7 @@ import ChatScreen from "@/components/ChatScreen";
 import { db, auth } from "@/firebase";
 import getRecepientEmail from "@/utils/getRecepientEmail.utility";
 import { useAuthState } from "react-firebase-hooks/auth";
+// import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const ChatPage = ({ chat, messages }) => {
   const [user] = useAuthState(auth);
@@ -49,6 +50,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
+      // ...(await serverSideTranslations(context.locale, [])),
       messages: JSON.stringify(messages),
       chat: chat,
     },
